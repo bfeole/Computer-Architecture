@@ -141,6 +141,12 @@ class CPU:
 
                 self.pc += 3
 
+            elif instruction == ADD:
+                self.alu(ADD, self.ram_read(self.pc + 1),
+                         self.ram_read(self.pc + 2))
+
+                self.pc += 3
+
             elif instruction == PUSH:
                 self.reg[self.SP] -= 1  # decrement stack pointer
 
@@ -200,6 +206,6 @@ class CPU:
 
                 self.pc += 2
                 self.trace()
-            # else:
-            #     print(f"Unknown instruction at index {self.pc}")
-            #     sys.exit(1)
+            else:
+                print(f"Unknown instruction at index {self.pc}")
+                sys.exit(1)
